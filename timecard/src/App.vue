@@ -1,28 +1,23 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
-  </div>
+<template lang='jade'>
+#wrapper
+  nav.navbar.navbar-default
+    .container
+      a.navbar-brand(href="#")
+        i.glyphicon.glyphicon-time
+        时间卡
+      ul.nav.navbar-nav
+        li
+          router-link(to="/home") 首页
+        li
+          router-link(to="/timecards") 时间轴
+  .container
+    .col-sm-3
+    .col-sm-9
+      router-view
 </template>
 
 <script>
-import Hello from './components/Hello'
-
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
