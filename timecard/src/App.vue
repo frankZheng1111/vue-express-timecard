@@ -12,16 +12,27 @@
           router-link(to="/time-cards") 时间轴
   .container
     .col-sm-3
+      sidebar(:time="duration")
     .col-sm-9
-      router-view
+      router-view(v-on:deleteTime="deleteTime", v-on:timeUpdate="timeUpdate")
 </template>
 
 <script>
+import Sidebar from './components/Sidebar.vue'
 export default {
   name: 'app',
+  components: { sidebar: Sidebar },
   data () {
     return {
-      totalTime: 2
+      duration: 1.5
+    }
+  },
+  methods: {
+    timeUpdate (timeCard) {
+      this.duration += parseFloat(timeCard.duration)
+    },
+    deleteTime (timeCard) {
+      this.duration -= parseFloat(timeCard.duration)
     }
   }
 }
