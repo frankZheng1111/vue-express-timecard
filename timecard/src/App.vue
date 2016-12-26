@@ -9,7 +9,7 @@
         li
           router-link(to="/home") 首页
         li
-          router-link(to="/timecards") 时间轴
+          router-link(to="/time-cards") 时间轴
   .container
     .col-sm-3
     .col-sm-9
@@ -17,6 +17,14 @@
 </template>
 
 <script>
+export default {
+  name: 'app',
+  data () {
+    return {
+      totalTime: 2
+    }
+  }
+}
 </script>
 
 <style>

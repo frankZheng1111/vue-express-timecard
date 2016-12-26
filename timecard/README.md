@@ -1,6 +1,6 @@
 # timecard
 
-> For practice vue & express
+> Just for practice vue & express
 
 ## Build Setup
 
