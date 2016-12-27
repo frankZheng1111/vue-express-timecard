@@ -22,27 +22,40 @@ export default {
     return {
       // 模拟一个默认值
       timeCard: {
-        user: {
-          name: '二哲',
-          email: 'kodo@forchange.cn',
-          image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
-        }
+        // user: {
+        //   name: '二哲',
+        //   email: 'kodo@forchange.cn',
+        //   image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
+        // }
       }
     }
   },
   methods: {
     createNewCard () {
-      let timeCard = this.timeCard
-      console.log(timeCard)
-      this.$emit('timeUpdate', timeCard)
-      this.timeCard = {
-        user: {
-          name: '二哲',
-          email: 'kodo@forchange.cn',
-          image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
+      this.$http.post('http://localhost:8888/create', {
+        description: this.timeCard.description,
+        duration: this.timeCard.duration,
+        startTime: this.timeCard.startTime
+      }).then((ret) => {
+        let timeCard = this.timeCard
+        console.log(timeCard)
+        this.$emit('timeUpdate', timeCard)
+        this.timeCard = {
+          // user: {
+          //   name: '二哲',
+          //   email: 'kodo@forchange.cn',
+          //   image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
+          // }
         }
-      }
+      })
     }
   }
 }
 </script>
+
+
+<style>
+  .btn {
+    margin: 1px;
+  }
+</style>

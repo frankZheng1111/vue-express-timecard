@@ -19,10 +19,11 @@ div
             //`:src`属性，这个是vue的属性绑定简写`v-bind`可以缩写为`:`
             // 比如a标签的`href`可以写为`:href`
             //并且在vue的指令里就一定不要写插值表达式了(`:src={{xx}}`)，vue自己会去解析
-            img.avatar.img-circle.img-responsive(:src="timeCard.user.image")
+            //- img.avatar.img-circle.img-responsive(:src="timeCard.user.image")
+            img.avatar.img-circle.img-responsive(src='https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256' )
             p.text-center
-              strong
-                {{ timeCard.user.name }}
+              strong Demo User
+                //- {{ timeCard.user.name }}
 
           .col-sm-2.text-center.time-block
             h3.list-group-item-text.total-time
@@ -45,29 +46,46 @@ div
 export default {
   data () {
     // 事先模拟一个数据
-    let existingCard = {
-      user: {
-        name: '二哲',
-        email: 'kodo@forchange.cn',
-        image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
-      },
-      description: '一个事务的备注',
-      duration: 1.5,
-      startTime: '2016-05-01 08:08'
-    }
+    // let existingCard = {
+    //   // user: {
+    //   //   name: 'demo',
+    //   //   email: 'demo@forchange.cn',
+    //   //   image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
+    //   // },
+    //   description: '一个事务的备注',
+    //   duration: 1.5,
+    //   startTime: '2016-05-01 08:08'
+    // }
+
+    this.$http.get('http://localhost:8888/time-cards')
+      .then((ret) => {
+        console.log('dadasdadasdas')
+        this.timeCards = ret.data
+      })
+      .then((err) => {
+        console.log(err)
+      })
 
     return {
-      timeCards: [existingCard]
+      timeCards: []
     }
   },
   methods: {
     deletetimeCard (timeCard) {
       // 这个方法用于删除某一项计划
       let index = this.timeCards.indexOf(timeCard)
+      let _id = this.timeCards[index]._id
       if (window.confirm('确定要删除吗?')) {
-        this.timeCards.splice(index, 1)
-        // 这里会派发到父组件上，执行父组件events里的deleteTime方法
-        this.$emit('deleteTime', timeCard)
+        this.$http.delete('http://localhost:8888/delete/' + _id)
+        .then((ret) => {
+          console.log(ret)
+          this.timeCards.splice(index, 1)
+          // 这里会派发到父组件上，执行父组件events里的deleteTime方法
+          this.$emit('deleteTime', timeCard)
+        })
+        .then((err) => {
+          console.log(err)
+        })
       }
     },
     timeUpdate (timeCard) {

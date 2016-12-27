@@ -22,10 +22,19 @@ import Sidebar from './components/Sidebar.vue'
 export default {
   name: 'app',
   components: { sidebar: Sidebar },
+  // data () {
+  //   return {
+  //     duration: 1.5
+  //   }
+  // },
   data () {
-    return {
-      duration: 1.5
-    }
+    this.$http.get('http://localhost:8888/time-full-duration')
+      .then((ret) => {
+        this.duration = ret.data.time
+      })
+      .then((err) => {
+        console.log(err)
+      })
   },
   methods: {
     timeUpdate (timeCard) {
