@@ -37,7 +37,7 @@ export default {
         duration: this.timeCard.duration,
         startTime: this.timeCard.startTime
       }).then((ret) => {
-        let timeCard = this.timeCard
+        let timeCard = ret.data.timeCard
         console.log(timeCard)
         this.$emit('timeUpdate', timeCard)
         this.timeCard = {

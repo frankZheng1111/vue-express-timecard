@@ -35,6 +35,9 @@ export default {
       .then((err) => {
         console.log(err)
       })
+    return {
+      duration: 0
+    }
   },
   methods: {
     timeUpdate (timeCard) {

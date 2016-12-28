@@ -24,6 +24,10 @@ const routes = [
       path: 'new',
       component: newTimeCards
     }]
+  },
+  {
+    path: '*',
+    redirect: '/home'
   }
 ]
 const router = new VueRouter({

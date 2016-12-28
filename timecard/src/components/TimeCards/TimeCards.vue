@@ -59,7 +59,6 @@ export default {
 
     this.$http.get('http://localhost:8888/time-cards')
       .then((ret) => {
-        console.log('dadasdadasdas')
         this.timeCards = ret.data
       })
       .then((err) => {

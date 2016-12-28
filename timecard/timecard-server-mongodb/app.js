@@ -53,7 +53,7 @@ MongoClient.connect(mongoUrl, function (err, db) {
         console.error(err);
         res.status(500).end();
       } else {
-        res.send({errcode:0,errmsg:"ok"});
+        res.send({errcode:0, errmsg:"ok", timeCard: ret.ops[0]});
       }
     });
   });
