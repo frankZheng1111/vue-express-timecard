@@ -1,4 +1,7 @@
 "use strict"
+let fs = require("fs");
+let path = require("path");
+
 let mongoose = require('mongoose');
 let opts = {
   server: {
@@ -17,8 +20,15 @@ switch (env) {
     throw new Error('Unknown execution environment:' + env );
 }
 
-let TimeCard = require('./time_card.js');
+fs
+  .readdirSync(__dirname)
+  .filter(function(file) {
+    return (file.indexOf(".") !== 0) && (file !== "index.js");
+  })
+  .forEach((file) => {
+    let model = require('./' + file);
+    Models[model.modelName] = model;
+  })
 
-Models.TimeCard = TimeCard;
 
 module.exports = Models;

@@ -52,8 +52,6 @@ let ObjectID = require('mongodb').ObjectID
 
 //获取总时长
 app.get('/time-full-duration', (req, res, next) => {
-  //获取数据表
-  // let collection = _db.collection('my_time_card');
   let time = 0;
   //查询出所有计划
   Model.TimeCard.find((err, ret) => {
