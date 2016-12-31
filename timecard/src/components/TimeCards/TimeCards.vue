@@ -31,7 +31,7 @@ div
               {{ timeCard.duration }}
             p.label.label-primary.text-center
               i.glyphicon.glyphicon-calendar
-              {{ timeCard.startTime }}
+              {{ formatTime(timeCard.startTime) }}
 
           .col-sm-7.comment-section
             p
@@ -43,6 +43,7 @@ div
 </template>
 
 <script>
+import moment from 'moment-timezone'
 export default {
   data () {
     // 事先模拟一个数据
@@ -70,6 +71,9 @@ export default {
     }
   },
   methods: {
+    formatTime (time) {
+      return moment(new Date(time)).format('YYYY-MM-DD h:mm')
+    },
     deletetimeCard (timeCard) {
       // 这个方法用于删除某一项计划
       let index = this.timeCards.indexOf(timeCard)
