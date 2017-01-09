@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     formatTime (time) {
-      return moment(new Date(time)).format('YYYY-MM-DD h:mm')
+      return moment(new Date(time)).format('YYYY-MM-DD')
     },
     deletetimeCard (timeCard) {
       // 这个方法用于删除某一项计划
